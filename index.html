@@ -1,14 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 4 Project</title>
+    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="src/css/style.css">
 </head>
+
 <body>
-    <div class="container">
-        <div class="anchor"></div>
-    </div>
-    <script src="/src/app.js"></script>
+    <div class=" container">
+        <div class="app-name">
+            <h2>Cookie Game</h2>
+        </div>
+        <div class="app-main">
+            <div class="app-main__game">
+                <div class="app-main__game__username">
+                    <h3 >User Name: <span id="userName">My Name</span></h3>
+                </div>
+                <div class="app-main__game__score">
+                    <h3> <span id="score">598</span> cookies</h3>
+                    <h3><span id="multiplicator"> 1.8 </span> Per Second</h3>
+                </div>
+                <div class="app-main__game__picture">
+                    <img id="pic" src="src/images/cookies.png" alt="Cookies picture">
+                </div>
+
+                </div>
+                <div class="app-main__features">
+                    <div class="app-main__features__options">
+                        <h3>Options</h3>
+                    </div>
+                    <div class="app-main__features__optionsList">
+                        <button class="option">Option 1</button>
+
+                        <button class="option">Option 2</button>
+                        <button class="option">Option 3</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="/src/js/app.js"></script>
 </body>
+
 </html>

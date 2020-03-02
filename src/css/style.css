@@ -1,0 +1,101 @@
+* {
+
+    font-family: 'Gochi Hand', 'sans-serif';
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 1.3rem;
+    color: bisque;
+
+}
+
+.container {
+
+    background-image: url(../images/wood.jpg);
+    background-size: cover;
+    min-height: 98vh;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    grid-gap: 2rem;
+
+}
+
+.app-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 2rem;
+    border: 1px solid green;
+
+}
+
+.app-main__game {
+
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-rows: 0.5fr 0.5fr 5fr;
+
+    border: 1px solid red;
+}
+
+.app-main__game__username {
+    border: 1px solid red;
+    display: grid;
+    justify-content: center;
+}
+
+.app-main__game__score {
+    border: 1px solid green;
+    display: grid;
+    justify-content: center;
+}
+
+.app-main__game__picture {
+    display: grid;
+    justify-content: center;
+}
+
+.app-main__game__picture img {
+    height: 10rem;
+    width: 10rem;
+}
+
+.app-name {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.app-name h2 {
+    color: #fff;
+    font-size: 5rem;
+    text-shadow: 1px 2px black;
+}
+
+.app-main__features {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-rows: 1fr 2fr 2fr 2fr;
+
+}
+
+.app-main__features__optionsList {
+
+    display: grid;
+    justify-content: center;
+    grid-gap: 1rem;
+}
+
+.app-main__features__optionsList .option {
+    display: block;
+
+    padding: 0.5rem 1rem;
+    background-color: #000;
+    color: #fff;
+}
+
+.app-main__game__username span {
+    color: rgb(16, 231, 213);
+    font-size: 1.4rem;
+}
