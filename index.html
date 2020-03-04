@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Module 4 Project</title>
-    <link href="https://fonts.googleapis.com/css?family=Gochi+Hand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Oxanium|Syncopate&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="src/css/style.css">
 </head>
 
 <body>
     <div class=" container">
         <div class="app-name">
-            <h2>Cookie Game</h2>
+            <h2>Cookie Click Counter</h2>
+            <audio id="audio" scr="./src/media/clickSound.mp3"></audio>
         </div>
         <div class="app-main">
             <div class="app-main__game">
@@ -20,10 +21,10 @@
                     <h3 >User Name: <span id="userName">My Name</span></h3>
                 </div>
                 <div class="app-main__game__score">
-                    <h3> <span id="score">598</span> cookies</h3>
+                    <h3 > <span id="score">598</span> <span id= "cookie">cookies</span></h3>
                     <h3><span id="multiplicator"> 1.8 </span> Per Second</h3>
                 </div>
-                <div class="app-main__game__picture">
+                <div id="pic" class="app-main__game__picture">
                     <img id="pic" src="src/images/cookies.png" alt="Cookies picture">
                 </div>
 
@@ -33,10 +34,24 @@
                         <h3>Options</h3>
                     </div>
                     <div class="app-main__features__optionsList">
-                        <button class="option">Option 1</button>
+                        <div>
+                            <h5>Clicking Compagnon Purchased:<span>3</span></h5>
 
-                        <button class="option">Option 2</button>
-                        <button class="option">Option 3</button>
+                        </div>
+                        <div>
+                            <h5>Culmination Compounder purchased:<span>4</span></h5>
+
+                        </div>
+                        <div>
+                            <button class="option">purchase Clicking Companions</button>
+                        </div>
+                        <div>
+                            <button class="option">purchase Culmination Compounder.</button>
+                        </div>
+                        <div>
+                            <button class="option">Option</button>
+                        </div>
+
                     </div>
                 </div>
 
