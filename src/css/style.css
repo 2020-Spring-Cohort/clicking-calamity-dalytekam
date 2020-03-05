@@ -12,7 +12,8 @@
 body {
     display: relative;
     height: 100vh;
-    z-index: -3;
+
+
 
 }
 
@@ -22,7 +23,7 @@ body {
     background-size: cover;
     min-height: 98vh;
     display: grid;
-    grid-template-rows: 1fr 4fr;
+    grid-template-rows: 0.5fr 4fr;
     grid-gap: 1rem;
 
 }
@@ -82,13 +83,15 @@ body {
 .app-name {
     display: grid;
     justify-content: center;
-    align-items: center;
+    align-items: top;
+    border: 1px solid red;
+    padding: 0px;
 
 }
 
 .app-name h2 {
     color: #fff;
-    font-size: 6rem;
+    font-size: 4rem;
     text-shadow: 1px 6px maroon;
 }
 
@@ -110,14 +113,31 @@ body {
 }
 
 .app-main__features__optionsList .option {
-    display: block;
-    width: 15rem;
-    padding: 0.5rem 0.5rem;
-    font-size: 0.7rem;
-    border: "none";
 
+    width: 15rem;
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+    outline: none;
     color: maroon;
-    -webkit-appearance: "none";
+    cursor: pointer;
+    background-color: Transparent;
+    transition: all 400ms ease-in;
+
+}
+
+.app-main__features__optionsList .option:hover {
+
+    color: #fff;
+    background-color: maroon;
+}
+
+.app-main__features__optionsList .option:hover #avcompa {
+    color: #fff;
+
+}
+
+.app-main__features__optionsList .option:hover #avcompo {
+    color: #fff;
 }
 
 .app-main__game__username span {
@@ -147,16 +167,29 @@ h5 span {
     padding: 0.3rem;
 }
 
-body::before {
+#avcompa,
+#avcompo {
+    color: maroon;
+
+}
+
+/*body::before {
     position: absolute;
     content: "";
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-    background-color: rgba(0, 0, 0, 0, 0.4);
-    z-index: 3;
+     background-color: rgba(0, 0, 0, 0.1);
 
 
 
+}*/
+
+h6 {
+    margin-top: 0.5rem;
+}
+
+h6 span {
+    color: maroon;
 }
