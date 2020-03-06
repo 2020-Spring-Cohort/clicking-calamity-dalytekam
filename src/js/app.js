@@ -1,6 +1,6 @@
 class ClickCount {
     constructor() {
-        this.clickCount = 300;
+        this.clickCount = 789;
         this.companionCount = 0;
         this.compounderCount = 0;
         this.companionPrice = 100;
@@ -11,8 +11,9 @@ class ClickCount {
         this.compounderPriceIncreasingRate = 0.1;
         this.numberOfcompanionClickPerSecond = 1;
         this.culminationCompounderIncreasingRate = 1;
-        this.cumulativeFactor = this.numberOfcompanionClickPerSecond * this.culminationCompounderIncreasingRate;
+
     }
+
 
     countClick() {
         this.clickCount++;
@@ -37,8 +38,7 @@ class ClickCount {
             this.getCompanionCount();
             this.clickingCompanionPurchased += 1;
 
-
-            /*this.numberofcompanionClickPerSecond++;*/
+            this.numberOfcompanionClickPerSecond += 1;
 
         } else {
             return;
@@ -51,23 +51,17 @@ class ClickCount {
             this.compounderPrice += this.compounderPrice * this.compounderPriceIncreasingRate;
             this.getCompounderCount();
             this.culminationCompounderPurchased += 1;
-            /* this.culminationCompounderIncreasingRate *= 1.2;*/
+            this.culminationCompounderIncreasingRate *= 1.2;
 
 
         } else {
             return;
         }
     }
-    companionEffect() {
-        setInterval(
-            () => {
-                cookieHolder.click();
-                newGame.clickCount += this.numberofcompanionClickPerSecond;
-            }, 1000);
-    }
+
 
     resetGame() {
-        this.clickCount = 0;
+        this.clickCount = 400;
         this.companionCount = 0;
         this.compounderCount = 0;
         this.companionPrice = 100;
@@ -78,15 +72,16 @@ class ClickCount {
         this.compounderPriceIncreasingRate = 0.1;
         this.numberOfcompanionClickPerSecond = 1;
         this.culminationCompounderIncreasingRate = 1;
-        this.cumulativeFactor = this.numberOfcompanionClickPerSecond * this.culminationCompounderIncreasingRate;
+        musicel3.play();
     }
 
 }
 
 
 
-
 const newGame = new ClickCount();
+
+
 
 
 /***************************************************************************** */
@@ -96,7 +91,7 @@ let cookieIsBig = false;
 const username = document.querySelector("#userName");
 const usernameEntered = prompt("Please Provide Your Name");
 username.innerText = usernameEntered;
-const multiplicator = document.querySelector("#multiplicator");
+const mul = document.querySelector("#multiplicator");
 let scoreHolder = document.querySelector("#score");
 const picture = document.querySelector("#pic");
 const cookieHolder = document.querySelector("#cookie");
@@ -111,9 +106,11 @@ const resetBtn = document.querySelector("#reset");
 const purchaseCompanionBtn = document.querySelector("#pCCompa");
 const purchaseCompounderBtn = document.querySelector("#pCCompo");
 
+const musicel = document.querySelector("#music");
 
+const musicel2 = document.querySelector("#music2");
 
-
+const musicel3 = document.querySelector("#music3");
 
 picture.addEventListener("click", function() {
 
@@ -131,18 +128,29 @@ picture.addEventListener("click", function() {
     cookieIsBig = !cookieIsBig;
 
     newGame.countClick();
-    scoreHolder.innerText = newGame.clickCount;
+    musicel.play();
+    // scoreHolder.innerText = newGame.clickCount;
     cookieHolder.innerText = newGame.clickCount > 1 ? "Cookies" : "Cookie";
 });
 
 updateDom();
 
 
+function companionEffect() {
+    setInterval(
+        () => {
 
+            newGame.clickCount += newGame.numberOfcompanionClickPerSecond * newGame.culminationCompounderIncreasingRate;
+            scoreHolder.innerText = newGame.clickCount.toFixed(2);
+        }, 1000);
+
+    updateDom();
+}
 
 function updateDom() {
-    scoreHolder.innerText = newGame.clickCount;
-    multiplicator.innetText = newGame.cumulativeFactor;
+    scoreHolder.innerText = newGame.clickCount.toFixed(2);
+
+    mul.innerText = (newGame.numberOfcompanionClickPerSecond * newGame.culminationCompounderIncreasingRate).toFixed(2);
 
 
     numberOfCompanionPurchased.innerText = newGame.clickingCompanionPurchased;
@@ -151,11 +159,11 @@ function updateDom() {
 
     numberOfAvailableCompanion.innerText = newGame.getCompanionCount();
 
-    priceOfCompanion.innerText = newGame.companionPrice;
+    priceOfCompanion.innerText = newGame.companionPrice.toFixed(2);
 
     numberOfAvailableCompounder.innerText = newGame.getCompounderCount();
 
-    priceOfCompounder.innerText = newGame.compounderPrice;
+    priceOfCompounder.innerText = newGame.compounderPrice.toFixed(2);
 
 }
 resetBtn.addEventListener("click", () => {
@@ -167,14 +175,18 @@ resetBtn.addEventListener("click", () => {
 });
 
 purchaseCompanionBtn.addEventListener("click", () => {
-
+    musicel2.play();
+    companionEffect();
     newGame.buyClickCompanion();
     updateDom();
+
 
 });
 
 purchaseCompounderBtn.addEventListener("click", () => {
+    companionEffect();
     newGame.buyClickCompounder();
     updateDom();
+    musicel2.play();
 
 });
