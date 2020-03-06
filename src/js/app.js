@@ -135,7 +135,8 @@ picture.addEventListener("click", function() {
 
 updateDom();
 
-let gameCounter;
+let gameCounter1;
+let gameCounter2;
 
 function companionEffect() {
     newGame.clickCount += newGame.numberOfcompanionClickPerSecond * newGame.culminationCompounderIncreasingRate;
@@ -164,7 +165,8 @@ function updateDom() {
 }
 resetBtn.addEventListener("click", () => {
     newGame.resetGame();
-    clearInterval(gameCounter);
+    clearInterval(gameCounter1);
+    clearInterval(gameCounter2);
     updateDom();
 
 
@@ -172,7 +174,7 @@ resetBtn.addEventListener("click", () => {
 
 purchaseCompanionBtn.addEventListener("click", () => {
     musicel2.play();
-    gameCounter = setInterval(companionEffect, 1000);
+    gameCounter1 = setInterval(companionEffect, 1000);
     newGame.buyClickCompanion();
     updateDom();
 
@@ -181,7 +183,7 @@ purchaseCompanionBtn.addEventListener("click", () => {
 
 purchaseCompounderBtn.addEventListener("click", () => {
     musicel2.play();
-    gameCounter = setInterval(companionEffect, 1000);
+    gameCounter2 = setInterval(companionEffect, 1000);
     newGame.buyClickCompounder();
     updateDom();
 
