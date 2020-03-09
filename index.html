@@ -10,9 +10,24 @@
 </head>
 
 <body>
-    <div class=" container">
+    <div class="container">
         <div class="app-name">
             <h2>Cookie Click Counter</h2>
+            <span id= "date"></span>
+            <ul class="nav">
+                <li class="navel navel1">
+                    Purchase Background(100 Clicks)
+                    <ul class="subnav">
+                        <li>Original</li>
+                        <li>Black</li>
+                        <li>White</li>
+                        <li>Blue</li>
+
+                    </ul>
+                </li>
+                <li class="navel  navel2"><a href="https://dalytekam.github.io/" target="_blank" >Developer</a></li>
+                <li class=" navel navel3"><a href="http://orteil.dashnet.org/cookieclicker/" target ="_blank">Game Inspiration</a></li>
+            </ul>
             <audio controls id="music" hidden>
                 <source src="./src/media/sound1.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -25,6 +40,11 @@
                 <source src="./src/media/newFeatures.mp3" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            <audio controls id="music4" hidden>
+                <source src="./src/media/background-purchased.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <hr>
         </div>
         <div class="app-main">
             <div class="app-main__game">
@@ -33,7 +53,7 @@
                 </div>
                 <div class="app-main__game__score">
                     <h3 > <span id="score"></span> <span id= "cookie"></span></h3>
-                    <h4> <span id="multiplicator">7</span> Per Second</h4>
+                    <h4> Multiplicator: <span id="multiplicator">7</span> Per Second</h4>
                 </div>
                 <div id="picture" class="app-main__game__picture">
                     <img id="pic" src="src/images/cookies.png" alt="Cookies picture"/>

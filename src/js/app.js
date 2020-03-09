@@ -1,6 +1,6 @@
 class ClickCount {
     constructor() {
-        this.clickCount = 700;
+        this.clickCount = 300;
         this.companionCount = 0;
         this.compounderCount = 0;
         this.companionPrice = 100;
@@ -9,12 +9,13 @@ class ClickCount {
         this.culminationCompounderPurchased = 0;
         this.companionPriceIncreasingRate = 0.1;
         this.compounderPriceIncreasingRate = 0.1;
-        this.numberOfcompanionClickPerSecond = 1;
+        this.numberOfcompanionClickPerSecond = 0;
         this.culminationCompounderIncreasingRate = 1;
+
     }
 
     countClick() {
-        this.clickCount++;
+        this.clickCount += this.culminationCompounderIncreasingRate;
 
         updateDom();
     }
@@ -52,7 +53,7 @@ class ClickCount {
     }
 
     resetGame() {
-        this.clickCount = 400;
+        this.clickCount = 0;
         this.companionCount = 0;
         this.compounderCount = 0;
         this.companionPrice = 100;
@@ -61,7 +62,7 @@ class ClickCount {
         this.culminationCompounderPurchased = 0;
         this.companionPriceIncreasingRate = 0.1;
         this.compounderPriceIncreasingRate = 0.1;
-        this.numberOfcompanionClickPerSecond = 1;
+        this.numberOfcompanionClickPerSecond = 0;
         this.culminationCompounderIncreasingRate = 1;
 
         musicel3.play();
@@ -75,12 +76,15 @@ const newGame = new ClickCount();
 let autoclickIsActive = false;
 let cookieIsBig = false;
 let gameloop;
+let multiplicator = newGame.numberOfcompanionClickPerSecond == 0 ? newGame.culminationCompounderIncreasingRate : newGame.culminationCompounderIncreasingRate * newGame.numberOfcompanionClickPerSecond;
 
 //*Select all the elemet in the page
 
 const username = document.querySelector('#userName');
 const usernameEntered = prompt('Please Provide Your Name');
-username.innerText = usernameEntered;
+username.innerText = usernameEntered == "" ? "Player1" : usernameEntered;
+const dateDisplayer = document.querySelector("#date");
+dateDisplayer.innerText = new Date().toDateString();
 const mul = document.querySelector('#multiplicator');
 let scoreHolder = document.querySelector('#score');
 const picture = document.querySelector('#pic');
@@ -97,11 +101,16 @@ const purchaseCompounderBtn = document.querySelector('#pCCompo');
 const musicel = document.querySelector('#music');
 const musicel2 = document.querySelector('#music2');
 const musicel3 = document.querySelector('#music3');
+const musicel4 = document.querySelector('#music4');
+const bgName = document.querySelector('.subnav');
+const appContainer = document.querySelector('.container');
+
 
 
 
 updateDom();
 console.log(newGame.numberOfcompanionClickPerSecond);
+
 
 function animateCookie() {
     if (cookieIsBig == false) {
@@ -114,12 +123,13 @@ function animateCookie() {
     cookieIsBig = !cookieIsBig;
     newGame.countClick();
     musicel.play();
-    cookieHolder.innerText = newGame.clickCount > 1 ? 'Cookies' : 'Cookie';
+    cookieHolder.innerText = newGame.clickCount <= 1 ? 'Cookie' : 'Cookies';
+    updateDom();
 }
 
 function companionEffect() {
     gameloop = setInterval(() => {
-        newGame.clickCount += newGame.numberOfcompanionClickPerSecond * newGame.culminationCompounderIncreasingRate;
+        newGame.clickCount += (newGame.numberOfcompanionClickPerSecond == 0 ? newGame.culminationCompounderIncreasingRate : newGame.culminationCompounderIncreasingRate * newGame.numberOfcompanionClickPerSecond);
         scoreHolder.innerText = newGame.clickCount.toFixed(2);
         updateDom();
     }, 1000);
@@ -127,7 +137,7 @@ function companionEffect() {
 
 function updateDom() {
     scoreHolder.innerText = newGame.clickCount.toFixed(2);
-    mul.innerText = (newGame.numberOfcompanionClickPerSecond * newGame.culminationCompounderIncreasingRate).toFixed(2);
+    mul.innerText = (newGame.numberOfcompanionClickPerSecond == 0 ? newGame.culminationCompounderIncreasingRate : newGame.culminationCompounderIncreasingRate * newGame.numberOfcompanionClickPerSecond).toFixed(2);
     numberOfCompanionPurchased.innerText = newGame.clickingCompanionPurchased;
     numberOfCompounderPurchased.innerText = newGame.culminationCompounderPurchased;
     numberOfAvailableCompanion.innerText = newGame.getCompanionCount();
@@ -140,6 +150,8 @@ resetBtn.addEventListener('click', () => {
     newGame.resetGame();
     autoclickIsActive = false;
     clearInterval(gameloop);
+    musicel3.play();
+
     updateDom();
 });
 
@@ -155,20 +167,37 @@ purchaseCompanionBtn.addEventListener('click', () => {
         newGame.buyClickCompanion();
         updateDom();
     }
+    console.log(multiplicator);
+
 });
 
 purchaseCompounderBtn.addEventListener('click', () => {
-    if (autoclickIsActive == false) {
-        autoclickIsActive = true;
-        companionEffect();
-        musicel2.play();
-        newGame.buyClickCompounder();
-        updateDom();
-    } else {
-        musicel2.play();
-        newGame.buyClickCompounder();
-        updateDom();
-    }
+    /* if (autoclickIsActive == false) {
+         autoclickIsActive = true;
+         companionEffect();*/
+    musicel2.play();
+    newGame.buyClickCompounder();
+    updateDom();
+    /* } else {
+         musicel2.play();
+         newGame.buyClickCompounder();
+         updateDom();
+     }*/
+
 
 });
 picture.addEventListener('click', animateCookie);
+
+bgName.addEventListener("click", (e) => {
+    if (newGame.clickCount >= 100) {
+        let backgroundPurchsed = e.target.innerText;
+        appContainer.style.backgroundImage = `url(src/images/${backgroundPurchsed}.jpg)`;
+        appContainer.style.backgroundSize = "cover";
+        newGame.clickCount -= 100;
+        musicel4.play();
+        updateDom();
+    } else {
+        return alert("You don't have enough clicks to buy a background");
+    }
+
+});

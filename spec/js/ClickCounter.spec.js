@@ -2,9 +2,8 @@ describe('Clicking Calamity Tests:', () => {
     let underTest;
     beforeEach(() => {
         underTest = new ClickCount();
-    })
+    });
     describe('countClick() records clicks and ClickCounter can give the clickCount', () => {
-
         it('countClick() 1 time should result in a clickCount of 1.', () => {
             underTest.countClick();
             expect(underTest.clickCount).toBe(1);
@@ -19,11 +18,10 @@ describe('Clicking Calamity Tests:', () => {
                 underTest.countClick();
             }
             expect(underTest.clickCount).toBe(100);
-
         });
     });
     describe('Clicking Companions:', () => {
-        it("ClickCounter should have 0 when new.", () => {
+        it('ClickCounter should have 0 when new.', () => {
             expect(underTest.getCompanionCount()).toBe(0);
         });
         it('getCompanionCount() shloud be 1 when clickCount is 100', () => {
@@ -35,10 +33,8 @@ describe('Clicking Calamity Tests:', () => {
         it('compagnionCount should be 0 when new.', () => {
             expect(underTest.companionCount).toBe(0);
         });
-        it('compagnionPrize should be 100 at the begining', () => {
-            expect(underTest.companionPrize).toBe(100);
+        it('compagnionPrice should be 100 at the begining', () => {
+            expect(underTest.companionPrice).toBe(100);
         });
-
-
     });
 });
