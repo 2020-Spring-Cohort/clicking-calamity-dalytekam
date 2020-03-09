@@ -36,5 +36,12 @@ describe('Clicking Calamity Tests:', () => {
         it('compagnionPrice should be 100 at the begining', () => {
             expect(underTest.companionPrice).toBe(100);
         });
+        it('companionPrice should goes up by 10% each time a companion is bought', () => {
+            for (var i = 0; i < 325; i++) {
+                underTest.countClick();
+            }
+            underTest.buyClickCompanion();
+            expect(underTest.companionPrice).tobe(110);
+        });
     });
 });
